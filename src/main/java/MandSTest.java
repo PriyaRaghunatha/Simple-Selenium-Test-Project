@@ -48,6 +48,33 @@ public class MandSTest {
 	}
 	
 	@Test
+	public void searchProductWithSpaces()
+	{
+		driver.get(BASEURL);
+    	WebElement searchfield = driver.findElement(By.xpath("//*[@id='global-search']"));
+    	searchfield.clear();
+    	searchfield.sendKeys("Ladies shoes");
+    	
+    	WebElement goButton = driver.findElement(By.xpath("//*[@id='goButton']"));
+    	goButton.click();
+    	
+    	assertNotNull(driver.findElement(By.xpath("//div[@id='product-listing']")));
+	}
+	
+	@Test
+	public void searchProductWithSpecialCharacters()
+	{
+		driver.get(BASEURL);
+    	WebElement searchfield = driver.findElement(By.xpath("//*[@id='global-search']"));
+    	searchfield.clear();
+    	searchfield.sendKeys("- case");
+    	
+    	WebElement goButton = driver.findElement(By.xpath("//*[@id='goButton']"));
+    	goButton.click();
+    	
+    	assertNotNull(driver.findElement(By.xpath("//div[@id='product-listing']")));
+	}
+	@Test
 	public void searchInvalidProduct()
 	{
 		driver.get(BASEURL);
